@@ -5,6 +5,9 @@ public class _00_1D_Array_Methods {
     //   of the integers in the array being passed in
     public static int sumIntArray(int[] values) {
 
+    	for (int i = 0; i < values.length; i++) {
+    		
+    	}
         return 0;
     }
 
