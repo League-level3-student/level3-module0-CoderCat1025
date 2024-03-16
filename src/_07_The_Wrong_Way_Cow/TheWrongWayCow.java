@@ -44,21 +44,93 @@
  * .woco..
  * .ow.c..
  * .c.....
-*/
+ */
 
 package _07_The_Wrong_Way_Cow;
 
 public class TheWrongWayCow {
 
-    public static int[] findWrongWayCow(final char[][] field) {
-        // Fill in the code to return the [col, row] coordinate position of the
-        // head (letter 'c') of the wrong way cow!
-        for (int o = 0; o < field.length; o++) {
-        	for (int i = 0; i < field.length; i++) {
-        		if (field[o][i] == ) {
-        		}
-        	}
-        }
-        return null;
-    }
+	public static int[] findWrongWayCow(final char[][] field) {
+		// Fill in the code to return the [col, row] coordinate position of the
+		// head (letter 'c') of the wrong way cow!
+
+		int[] ints = {0, 0};
+		int n = 0; 
+		int e = 0;
+		int s = 0;
+		int w = 0;
+		int[][] Ncoords = new int[1][2];
+		int[][] Ecoords = new int[1][2];
+		int[][] Scoords = new int[1][2];
+		int[][] Wcoords = new int[1][2];
+
+		for (int o = 0; o < field.length; o++) {
+			for (int i = 0; i < field.length; i++) {
+				if (field[o][i] == 'c') {
+					//w
+					if (i < field.length - 1) {
+						if (field[o][i+1] == 'o') {
+							if (field[o][i+2]=='w') {
+								w++;
+								if (Wcoords[0][0] != 0 && Wcoords[0][1] != 0) {
+									Wcoords[0][0] = i;
+									Wcoords[0][1] = o;
+								}
+							}
+						}
+					}
+
+					//e
+					if (i > 1 && field[o][i-1] == 'o') {
+						if (field[o][i-2]=='w') {
+							e++;
+							if (Ecoords[0][0] != 0 && Ecoords[0][1] != 0) {
+								Ecoords[0][0] = i;
+								Ecoords[0][1] = o;
+							}
+						}
+					}
+
+					//s
+					if (o > 1 && field[o-1][i] == 'o') {
+						if (field[o-2][i]=='w') {
+							s++;
+							if (Scoords[0][0] != 0 && Scoords[0][1] != 0) {
+								Scoords[0][0] = i;
+								Scoords[0][1] = o;
+							}
+						}
+					}
+
+					//n
+					if (o < field.length - 1 && field[o+1][i] == 'o') {
+						if (field[o+2][i]=='w') {
+							n++;
+							if (Ncoords[0][0] != 0 && Ncoords[0][1] != 0) {
+								Ncoords[0][0] = i;
+								Ncoords[0][1] = o;
+							}
+						}
+					}
+
+				}
+
+				if (s==1) {
+					ints[0] = Scoords[0][0];
+					ints[1] = Scoords[0][1];
+				} else if (w==1) {
+					ints[0] = Wcoords[0][0];
+					ints[1] = Wcoords[0][1];
+				} else if (n==1) {
+					ints[0] = Ncoords[0][0];
+					ints[1] = Ncoords[0][1];
+				} else if (e==1) {
+					ints[0] = Ecoords[0][0];
+					ints[1] = Ecoords[0][1];
+				}
+
+			}
+		}
+		return ints;
+	}
 }
