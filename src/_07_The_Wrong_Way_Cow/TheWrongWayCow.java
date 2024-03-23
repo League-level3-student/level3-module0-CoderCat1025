@@ -65,10 +65,10 @@ public class TheWrongWayCow {
 		int[][] Wcoords = new int[1][2];
 
 		for (int o = 0; o < field.length; o++) {
-			for (int i = 0; i < field.length; i++) {
+			for (int i = 0; i < field[0].length; i++) {
 				if (field[o][i] == 'c') {
 					//w
-					if (i < field.length - 1) {
+					if (i < field[0].length - 1) {
 						if (field[o][i+1] == 'o') {
 							if (field[o][i+2]=='w') {
 								w++;
