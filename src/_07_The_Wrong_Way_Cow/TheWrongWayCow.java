@@ -72,10 +72,9 @@ public class TheWrongWayCow {
 						if (field[o][i+1] == 'o') {
 							if (field[o][i+2]=='w') {
 								w++;
-								if (Wcoords[0][0] != 0 && Wcoords[0][1] != 0) {
-									Wcoords[0][0] = i;
-									Wcoords[0][1] = o;
-								}
+								Wcoords[0][0] = i;
+								Wcoords[0][1] = o;
+
 							}
 						}
 					}
@@ -84,10 +83,9 @@ public class TheWrongWayCow {
 					if (i > 1 && field[o][i-1] == 'o') {
 						if (field[o][i-2]=='w') {
 							e++;
-							if (Ecoords[0][0] != 0 && Ecoords[0][1] != 0) {
-								Ecoords[0][0] = i;
-								Ecoords[0][1] = o;
-							}
+							Ecoords[0][0] = i;
+							Ecoords[0][1] = o;
+
 						}
 					}
 
@@ -95,10 +93,9 @@ public class TheWrongWayCow {
 					if (o > 1 && field[o-1][i] == 'o') {
 						if (field[o-2][i]=='w') {
 							s++;
-							if (Scoords[0][0] != 0 && Scoords[0][1] != 0) {
-								Scoords[0][0] = i;
-								Scoords[0][1] = o;
-							}
+							Scoords[0][0] = i;
+							Scoords[0][1] = o;
+
 						}
 					}
 
@@ -106,31 +103,34 @@ public class TheWrongWayCow {
 					if (o < field.length - 1 && field[o+1][i] == 'o') {
 						if (field[o+2][i]=='w') {
 							n++;
-							if (Ncoords[0][0] != 0 && Ncoords[0][1] != 0) {
-								Ncoords[0][0] = i;
-								Ncoords[0][1] = o;
-							}
-						}
+							Ncoords[0][0] = i;
+							Ncoords[0][1] = o;
+						}	
 					}
-
 				}
-
-				if (s==1) {
-					ints[0] = Scoords[0][0];
-					ints[1] = Scoords[0][1];
-				} else if (w==1) {
-					ints[0] = Wcoords[0][0];
-					ints[1] = Wcoords[0][1];
-				} else if (n==1) {
-					ints[0] = Ncoords[0][0];
-					ints[1] = Ncoords[0][1];
-				} else if (e==1) {
-					ints[0] = Ecoords[0][0];
-					ints[1] = Ecoords[0][1];
-				}
-
 			}
 		}
+
+		if (s==1) {
+			ints[0] = Scoords[0][0];
+			ints[1] = Scoords[0][1];
+			return ints;
+		} else if (w==1) {
+			ints[0] = Wcoords[0][0];
+			ints[1] = Wcoords[0][1];
+			return ints;
+		} else if (n==1) {
+			ints[0] = Ncoords[0][0];
+			ints[1] = Ncoords[0][1];
+			return ints;
+		} else if (e==1) {
+			ints[0] = Ecoords[0][0];
+			ints[1] = Ecoords[0][1];
+			return ints;
+		}
+
+
+
 		return ints;
 	}
 }
