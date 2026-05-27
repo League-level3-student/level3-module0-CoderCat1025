@@ -21,8 +21,8 @@ public class PixelArtMaker implements MouseListener, Serializable, ActionListene
     ColorSelectionPanel csp;
     static JButton save;
     static PixelArtMaker pixels;
-    
-    private static final String DATA_FILE = "src/_05_Pixel_Art/saved.dat";
+    static Serialization s;
+
 
     public void start() {
         gip = new GridInputPanel(this);	
@@ -34,11 +34,12 @@ public class PixelArtMaker implements MouseListener, Serializable, ActionListene
         window.pack();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);
+        s = new Serialization();
         
         save.setText("SAVE");
         save.addActionListener(this);
         
-        load();
+        Serialization.load();
     }
 
     public void submitGridData(int w, int h, int r, int c) {
@@ -70,27 +71,6 @@ public class PixelArtMaker implements MouseListener, Serializable, ActionListene
         gp.clickPixel(e.getX(), e.getY());
         gp.repaint();
     }
-    
-	private static void save(PixelArtMaker data) {
-		try (FileOutputStream fos = new FileOutputStream(new File(DATA_FILE)); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-			oos.writeObject(data);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private static PixelArtMaker load() {
-		try (FileInputStream fis = new FileInputStream(new File(DATA_FILE)); ObjectInputStream ois = new ObjectInputStream(fis)) {
-			return (PixelArtMaker) ois.readObject();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		} catch (ClassNotFoundException e) {
-			// This can occur if the object we read from the file is not
-			// an instance of any recognized class
-			e.printStackTrace();
-			return null;}
-		}
 
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -106,7 +86,7 @@ public class PixelArtMaker implements MouseListener, Serializable, ActionListene
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		save(pixels);
+		Serialization.save(pixels);
 		
 	}
 }
